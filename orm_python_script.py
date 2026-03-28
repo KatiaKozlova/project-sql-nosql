@@ -1,7 +1,7 @@
 """Simple CLI to interact with the DB via SQLAlchemy ORM."""
 
 import os
-from sqlalchemy import create_engine, Column, String, Integer, ForeignKey, or_
+from sqlalchemy import create_engine, Column, String, Integer, ForeignKey, or_, func
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 from dotenv import load_dotenv
 
@@ -58,14 +58,14 @@ class MusicService:
         self.session = SessionLocal()
 
     def get_tracks_by_genre(self, genre: str) -> list[Track]:
-        '''Returns a list of 10 tracks that belong to the specified (sub)genre.'''
+        '''Returns random 10 tracks that belong to the specified (sub)genre.'''
         return (
             self.session.query(Track).join(TrackToPlaylist).join(Playlist)
             .filter(or_(
                 Playlist.playlist_genre == genre,
                 Playlist.playlist_subgenre == genre
                 ))
-            .limit(10).all()
+            .order_by(func.rand()).limit(10).all()
         )
 
     def get_top_tracks(self, limit: int = 5) -> list[Track]:
