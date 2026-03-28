@@ -5,7 +5,6 @@ WITH playlist_tracks AS (
     JOIN track_to_playlist AS tp ON t.track_id = tp.track_id
     JOIN playlists AS p ON tp.playlist_id = p.playlist_id
 )
-
 SELECT pt.playlist_name, pt.track_name, pt.track_popularity FROM playlist_tracks AS pt
 WHERE pt.track_popularity > (
     SELECT AVG(pt2.track_popularity) FROM playlist_tracks AS pt2
