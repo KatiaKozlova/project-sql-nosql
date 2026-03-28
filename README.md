@@ -26,7 +26,7 @@ project/
 
 ## Notes
 
-- `data/` stores CSV source data for the DB.
+- `data/` stores CSV source data for the DB (parsed from [Kaggle](https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs)).
 - `init/init.sql` contains initialization SQL for Docker.
 - `scripts/` contains separate SQL tasks.
 - `docker-compose.yml` defines the local container setup.
