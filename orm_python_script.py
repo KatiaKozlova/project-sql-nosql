@@ -2,7 +2,7 @@
 
 import os
 from sqlalchemy import create_engine, Column, String, Integer, ForeignKey, or_
-from sqlalchemy.orm import declarative_base, relationship, sessionmaker, DeclarativeBase
+from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 from dotenv import load_dotenv
 
 # Initialize DB connection
@@ -12,7 +12,7 @@ DATABASE_URL = f"mysql+pymysql://root:{MYSQL_PASSWORD}@127.0.0.1:3306/project_ko
 
 engine = create_engine(DATABASE_URL, echo=False)
 SessionLocal = sessionmaker(bind=engine)
-Base: DeclarativeBase = declarative_base()
+Base = declarative_base()
 
 
 class Track(Base):
